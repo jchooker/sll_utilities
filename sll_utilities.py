@@ -56,14 +56,10 @@ def moveMinFront(l_list):
             currMinNode = runner.next
             preMinNode = runner
         runner = runner.next
-    # print("L List Head Next 1:", l_list.head.next.value)
     if preMinNode: #in case the first value is the actual lowest value
         preMinNode.next = currMinNode.next
     currMinNode.next = l_list.head
     l_list.head = currMinNode
-    # l_list.head.next = currMinNode.next
-    # print("L List Head Next 2:", l_list.head.next)
-    # currMinNode.next = l_list.head
 
     return l_list
 
@@ -80,13 +76,15 @@ def moveMaxBack(l_list):
 
     if preMaxNode and currMaxNode.next != None:
         preMaxNode.next = currMaxNode.next
+        currMaxNode.next = runner.next
+        runner.next = currMaxNode
     tail = runner
-    tail.next = currMaxNode
+    
     if currMaxNode.next:
+        tail.next = currMaxNode
         l_list.head = currMaxNode.next
     currMaxNode.next = None
     
-
     return l_list
 
 l_list1 = SLL()
@@ -95,7 +93,6 @@ l_list1.addFront(3)
 l_list1.addFront(5)
 l_list1.addFront(7)
 l_list1.addFront(111)
-
 
 l_list1 = moveMaxBack(l_list1)
 l_list1.printSLL()
